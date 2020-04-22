@@ -12,23 +12,84 @@ class _pagInicialState extends State<pagInicial> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Primeira tela",
+        backgroundColor: Colors.white,
+        title: Text("at home",
+          textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 25,
-            color: Colors.red,
+            color: Colors.black,
           ),),
       ),
       body: Container(
-        padding: EdgeInsets.all(32),
+        padding: EdgeInsets.all(12),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            RaisedButton(
-                child: Text("ir para a segunda tela"),
-                padding: EdgeInsets.all(15),
-                onPressed: (){
-                  Navigator.pushNamed(context, "/secundaria");
-
-                })
+            Padding(
+              padding: EdgeInsets.only(top: 70),
+              child: Image.asset("images/logo.png",height: 300,),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                GestureDetector(
+                  child: Container(
+                    height: 80,
+                    width: 178,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 3.0,
+                      ),
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Log In",
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Montserrat',
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ],),),
+                  onTap: (){
+                    //TODO
+                  },
+                ),
+                GestureDetector(
+                  child: Container(
+                    height: 80,
+                    width: 178,
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          "Register",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Montserrat',
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 1,
+                          ),),
+                      ],),
+                  ),
+                  onTap: (){
+                    //TODO
+                  },
+                )
+              ],
+            )
+            
           ],
         ),
       ),
