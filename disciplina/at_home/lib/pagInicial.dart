@@ -17,6 +17,7 @@ class _pagInicialState extends State<pagInicial> {
           textAlign: TextAlign.start,
           style: TextStyle(
             fontSize: 25,
+            fontFamily: 'Roboto',
             color: Colors.black,
           ),),
       ),
@@ -50,7 +51,7 @@ class _pagInicialState extends State<pagInicial> {
                           "Log In",
                           style: TextStyle(
                             color: Colors.black,
-                            fontFamily: 'Montserrat',
+                            fontFamily: 'Roboto',
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 1,
@@ -76,7 +77,7 @@ class _pagInicialState extends State<pagInicial> {
                           "Register",
                           style: TextStyle(
                             color: Colors.white,
-                            fontFamily: 'Montserrat',
+                            fontFamily: 'Roboto',
                             fontSize: 25,
                             fontWeight: FontWeight.w500,
                             letterSpacing: 1,
@@ -89,7 +90,7 @@ class _pagInicialState extends State<pagInicial> {
                 )
               ],
             )
-            
+
           ],
         ),
       ),
