@@ -344,7 +344,7 @@ class _registerClienteState extends State<registerCliente> {
                                     onChanged: (bool valor){
                                       setState(() {
                                         termos = valor;
-                                  
+
                                       });
                                     }
                                 ),
