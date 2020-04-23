@@ -130,11 +130,25 @@ class _loginState extends State<login> {
 
                     ),
                   ),
+                  GestureDetector(
+                    child:
+                    Padding(padding: EdgeInsets.only(top: 6, left: 232),
+                      child: Text("Esqueceu a senha ?",
+                        style: TextStyle(
+                          color: Colors.blue,
+                          fontFamily: 'Roboto',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                    onTap: (){},
+                  )
                 ],
               )
             ),
 
-            Padding(padding: EdgeInsets.only(top: 20),
+            Padding(padding: EdgeInsets.only(top: 36),
             child: GestureDetector(
               child: Container(
                 height: 80,
