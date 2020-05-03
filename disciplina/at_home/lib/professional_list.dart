@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+
+import 'maisDetalhes.dart';
+
+
 class professional_List extends StatefulWidget {
   String _service;
 
@@ -20,6 +24,8 @@ class _professional_listState extends State<professional_List> {
   _professional_listState(this._service) {
     _professionalBiulder = new _professionalListBiulder(_name, _grade, _imagens);
   }
+
+
 
 
   @override
@@ -63,9 +69,42 @@ class _professionalListBiulder {
 
   _professionalListBiulder(this.name, this.grade, this.imagens);
 
+
   @override
   Widget professional_builder(BuildContext context, int index) {
     double grade_index = this.grade[index];
+
+
+
+    void abrirSegTela(int v){
+
+      if( v == 1) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => maisDetalhes(1, name[v-1])));
+      }
+      else if ( v == 2) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => maisDetalhes(2, name[v-1])));
+      }
+      else if ( v == 3) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => maisDetalhes(3, name[v-1])));
+      }
+      else if ( v == 4) {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => maisDetalhes(3, name[v-1])));
+      }
+
+      else
+        print("erro");
+
+    }
+
+
     return ListTile(
         leading: CircleAvatar(
           child: GestureDetector(
@@ -91,9 +130,7 @@ class _professionalListBiulder {
                             fontFamily: 'Roboto'
                         ),
                       ),
-                      onDoubleTap: (){
-                        print("http request");
-                      },
+                        onDoubleTap: () => abrirSegTela(index+1)
                     ),
                     actions: <Widget>[
                       CupertinoActionSheetAction(
