@@ -48,6 +48,10 @@ flutter:
   assets:
     - images/logo.png
     - images/gatineo.jpg
+    - images/med1.jpg
+    - images/med2.jpg
+    - images/med3.jpeg
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
