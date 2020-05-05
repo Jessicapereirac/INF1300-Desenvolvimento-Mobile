@@ -13,7 +13,8 @@ void main() => runApp(
         primaryColor: Colors.white,
         fontFamily: "Roboto"
       ),
-      home: Navigation(),
+
+      home: login(),
 
     )
 );
