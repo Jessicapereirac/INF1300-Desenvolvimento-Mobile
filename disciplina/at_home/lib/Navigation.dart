@@ -21,7 +21,7 @@ class _NavigationState extends State<Navigation> {
             "at home",
             textAlign: TextAlign.start,
             style: TextStyle(
-                color: Colors.black, fontFamily: 'Roboto', fontSize: 25),
+                color: Colors.black, fontSize: 25),
           ),
           actions: <Widget>[
             IconButton(

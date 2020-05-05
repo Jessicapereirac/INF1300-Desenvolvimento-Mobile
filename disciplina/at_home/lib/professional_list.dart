@@ -96,7 +96,7 @@ class _professionalListBiulder {
       else if ( v == 4) {
         Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => maisDetalhes(3, name[v-1])));
+            MaterialPageRoute(builder: (context) => maisDetalhes(4, name[v-1])));
       }
 
       else
