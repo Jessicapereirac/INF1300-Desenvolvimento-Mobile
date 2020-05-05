@@ -1,5 +1,6 @@
 
 
+import 'package:com/Navigation.dart';
 import 'package:flutter/material.dart';
 
 class login extends StatefulWidget {
@@ -172,7 +173,9 @@ class _loginState extends State<login> {
                   ],),
               ),
               onTap: (){
-                //TODO
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => Navigation()));
               },
             )
               ,)

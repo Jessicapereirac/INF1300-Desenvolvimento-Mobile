@@ -27,8 +27,6 @@ class _maisDetalhesState extends State<maisDetalhes> {
                   color: Colors.black, fontFamily: 'Roboto', fontSize: 25),
             )),
         body: Container(
-
-
           padding: EdgeInsets.all(32),
           child: SingleChildScrollView(
             padding: EdgeInsets.all(4),

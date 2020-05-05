@@ -76,7 +76,7 @@ class _professionalListBiulder {
 
 
 
-    void abrirSegTela(int v){
+    void abrirDetalhes(int v){
 
       if( v == 1) {
         Navigator.push(
@@ -130,7 +130,7 @@ class _professionalListBiulder {
                             fontFamily: 'Roboto'
                         ),
                       ),
-                        onDoubleTap: () => abrirSegTela(index+1)
+                        onDoubleTap: () => abrirDetalhes(index+1)
                     ),
                     actions: <Widget>[
                       CupertinoActionSheetAction(
