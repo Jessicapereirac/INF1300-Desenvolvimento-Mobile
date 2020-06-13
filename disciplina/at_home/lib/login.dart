@@ -3,6 +3,8 @@
 import 'package:com/Navigation.dart';
 import 'package:flutter/material.dart';
 
+import 'generated/l10n.dart';
+
 class login extends StatefulWidget {
   @override
   _loginState createState() => _loginState();
@@ -35,7 +37,7 @@ class _loginState extends State<login> {
           children: <Widget>[
             Padding(
               padding: EdgeInsets.only(top: 60,bottom: 28),
-              child: Text("Log In",
+              child: Text(S.of(context).login,
 
                 style: TextStyle(
                   color: Colors.black,
@@ -93,7 +95,7 @@ class _loginState extends State<login> {
                     ),
                   ),
                   Padding(padding: EdgeInsets.only(top:10, bottom: 10),
-                    child: Text("Senha",
+                    child: Text(S.of(context).senha,
                       style: TextStyle(
                         color: Colors.black,
                         fontFamily: 'Roboto',
@@ -134,7 +136,7 @@ class _loginState extends State<login> {
                   GestureDetector(
                     child:
                     Padding(padding: EdgeInsets.only(top: 6, left: 232),
-                      child: Text("Esqueceu a senha ?",
+                      child: Text(S.of(context).esqsenha,
                         style: TextStyle(
                           color: Colors.blue,
                           fontFamily: 'Roboto',
@@ -161,8 +163,7 @@ class _loginState extends State<login> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      "Sing In",
+                    Text(S.of(context).entrar,
                       style: TextStyle(
                         color: Colors.white,
                         fontFamily: 'Roboto',
