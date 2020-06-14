@@ -7,9 +7,7 @@ class AppTranslate {
 
   AppTranslate(this.context);
 
-  String text(String key,
-      {Map<String, String> params, String defaultValue = ''}) {
-    return AppLocalizations.of(context)
-        .translate(key, params: params, defaultValue: defaultValue);
+  String text(String key) {
+    return AppLocalizations.of(context).translate(key);
   }
 }
