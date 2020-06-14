@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:com/professional_list.dart';
 
+import 'internacionalizacao/translate.dart';
+
 class Navigation extends StatefulWidget {
   @override
   _NavigationState createState() => _NavigationState();
@@ -61,7 +63,7 @@ class _NavigationState extends State<Navigation> {
                       ),
                       FlatButton(
                         onPressed: () {},
-                        child: Text("editar perfil",
+                        child: Text(AppTranslate(context).text('edit_profile'),
                             style: TextStyle(color: Colors.lightBlue)),
                       )
                     ],
@@ -91,7 +93,7 @@ class _NavigationState extends State<Navigation> {
                             margin: EdgeInsets.all(10),
                           ),
                         ),
-                        Text("Fisioterapia",
+                        Text(AppTranslate(context).text('fisio'),
                             style: TextStyle(
                                 color: Colors.black45,
                                 fontFamily: "Roboto",
@@ -100,7 +102,7 @@ class _NavigationState extends State<Navigation> {
                       ],
                     ),
                     onTap: () {
-                      this.push_professionalListPage("Fisioterapia");
+                      this.push_professionalListPage(AppTranslate(context).text('fisio'));
                     },
                   ),
                   GestureDetector(
@@ -163,10 +165,10 @@ class _NavigationState extends State<Navigation> {
                                 margin: EdgeInsets.all(10),
                               ),
                               onTap: () {
-                                this.push_professionalListPage("Quiropraxia");
+                                this.push_professionalListPage(AppTranslate(context).text('quiro'));
                               },
                             )),
-                        Text("Quiropraxia",
+                        Text(AppTranslate(context).text('quiro'),
                             style: TextStyle(
                                 color: Colors.black45,
                                 fontFamily: "Roboto",

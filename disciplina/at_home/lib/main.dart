@@ -17,8 +17,9 @@ void main() => runApp(
         fontFamily: "Roboto"
       ),
       supportedLocales: [
-        Locale('en', 'US'),
         Locale('pt', 'BR'),
+        Locale('en', 'US')
+
       ],
       localizationsDelegates: [
         AppLocalizations.delegate,
@@ -27,12 +28,16 @@ void main() => runApp(
         GlobalWidgetsLocalizations.delegate,
       ],
       localeResolutionCallback: (locale, supportedLocales) {
+
+        if (locale == null) { return supportedLocales.first; }
+
         for (var supportedLocale in supportedLocales) {
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode) {
             return supportedLocale;
           }
         }
+
         return supportedLocales.first;
       },
 

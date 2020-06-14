@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'internacionalizacao/translate.dart';
+
 class registerCliente extends StatefulWidget {
   @override
   _registerClienteState createState() => _registerClienteState();
@@ -41,7 +43,7 @@ class _registerClienteState extends State<registerCliente> {
             children: <Widget>[
               Padding(
                   padding: EdgeInsets.only(top: 60,bottom: 28),
-                  child: Text("Register",
+                  child: Text(AppTranslate(context).text('registrar'),
 
                     style: TextStyle(
                       color: Colors.black,
@@ -60,7 +62,7 @@ class _registerClienteState extends State<registerCliente> {
 
                       children: <Widget>[
                         Padding(padding: EdgeInsets.only(bottom: 10),
-                          child: Text("Nome Completo",
+                          child: Text(AppTranslate(context).text('name'),
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Roboto',
@@ -140,7 +142,7 @@ class _registerClienteState extends State<registerCliente> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.only(top:10, bottom: 10),
-                          child: Text("Senha",
+                          child: Text(AppTranslate(context).text('senha'),
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Roboto',
@@ -179,7 +181,7 @@ class _registerClienteState extends State<registerCliente> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.only(top:10, bottom: 10),
-                          child: Text("Endereço",
+                          child: Text(AppTranslate(context).text('endereco'),
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Roboto',
@@ -219,7 +221,7 @@ class _registerClienteState extends State<registerCliente> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.only(top:10, bottom: 10),
-                          child: Text("Numero ( com DDD )",
+                          child: Text(AppTranslate(context).text('num'),
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Roboto',
@@ -259,7 +261,7 @@ class _registerClienteState extends State<registerCliente> {
                           ),
                         ),
                         Padding(padding: EdgeInsets.only(top:10, bottom: 10),
-                          child: Text("Sexo:",
+                          child: Text(AppTranslate(context).text('sexo'),
                             style: TextStyle(
                               color: Colors.black,
                               fontFamily: 'Roboto',
@@ -281,7 +283,7 @@ class _registerClienteState extends State<registerCliente> {
                                         escolha = es;
                                       });
                                     }),
-                                Text("Feminino",
+                                Text(AppTranslate(context).text('fem'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Roboto',
@@ -303,7 +305,7 @@ class _registerClienteState extends State<registerCliente> {
                                         escolha = es;
                                       });
                                     }),
-                                Text("Masculino",
+                                Text(AppTranslate(context).text('mas'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Roboto',
@@ -324,7 +326,7 @@ class _registerClienteState extends State<registerCliente> {
                                         escolha = es;
                                       });
                                     }),
-                                Text("Outros",
+                                Text(AppTranslate(context).text('outro'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Roboto',
@@ -348,7 +350,7 @@ class _registerClienteState extends State<registerCliente> {
                                       });
                                     }
                                 ),
-                                Text("Aceito os termos e condições",
+                                Text(AppTranslate(context).text('termos'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Roboto',
@@ -382,7 +384,7 @@ class _registerClienteState extends State<registerCliente> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Register",
+                          AppTranslate(context).text('registro'),
                           style: TextStyle(
                             color: Colors.white,
                             fontFamily: 'Roboto',

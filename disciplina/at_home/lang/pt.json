@@ -2,5 +2,23 @@
   "login" : "Log In",
   "senha" :  "Senha",
   "entrar" : "Inscrever-se",
-  "esqsenha" : "Esqueceu a senha ?"
+  "esq_senha" : "Esqueceu a senha ?",
+  "edit_profile": "editar perfil",
+  "fisio" : "Fisioterapia",
+  "quiro" : "chiropractic",
+  "detalhes": "mais detalhes ...",
+  "ligar" : "Ligar",
+  "email" : "Mandar email",
+  "cancelar": "Cancelar",
+  "descreicao" : "Mais detalhes sobre o medico: ",
+  "registro" : "Registrar",
+  "endereco": "Endereço",
+  "sexo": "Sexo",
+  "fem": "Feminino",
+  "mas": "Masculino",
+  "outro": "Outros",
+  "num": "Número (com DDD)",
+  "name": "Nome Completo",
+  "termos" : "Aceito os termos e condições"
+
 }

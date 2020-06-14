@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
+import 'internacionalizacao/translate.dart';
 import 'maisDetalhes.dart';
 
 
@@ -121,7 +122,7 @@ class _professionalListBiulder {
                 builder: (BuildContext context)  => CupertinoActionSheet (
                     title: Text(this.name[index]),
                     message: GestureDetector(
-                      child: Text('mais detalhes... ',
+                      child: Text(AppTranslate(context).text('detalhes'),
 
                         style:
                         TextStyle(
@@ -134,20 +135,20 @@ class _professionalListBiulder {
                     ),
                     actions: <Widget>[
                       CupertinoActionSheetAction(
-                        child: const Text('Ligar'),
+                        child: Text(AppTranslate(context).text('ligar')),
                         onPressed: () {
                           Navigator.pop(context, 'ligar');
                         },
                       ),
                       CupertinoActionSheetAction(
-                        child: const Text('Mandar email'),
+                        child: Text(AppTranslate(context).text('email')),
                         onPressed: () {
                           Navigator.pop(context, 'email');
                         },
                       )
                     ],
                     cancelButton: CupertinoActionSheetAction(
-                      child: const Text('Cancelar'),
+                      child: Text(AppTranslate(context).text('cancelar')),
                       isDefaultAction: true,
                       onPressed: () {
                         Navigator.pop(context, 'Cancel');
