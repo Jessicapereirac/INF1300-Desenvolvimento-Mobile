@@ -7,25 +7,34 @@ import 'package:com/Navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-import 'generated/l10n.dart';
+import 'internacionalizacao/localizations.dart';
 
 void main() => runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
-      supportedLocales: S.delegate.supportedLocales,
-      localizationsDelegates: {
-        S.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate
-      },
-/*      localeListResolutionCallback: (Locale locale, supportedLocales){
-        return Locale('en');
-      },*/
       theme: ThemeData(
         primaryColor: Colors.white,
         fontFamily: "Roboto"
       ),
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('pt', 'BR'),
+      ],
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      localeResolutionCallback: (locale, supportedLocales) {
+        for (var supportedLocale in supportedLocales) {
+          if (supportedLocale.languageCode == locale.languageCode &&
+              supportedLocale.countryCode == locale.countryCode) {
+            return supportedLocale;
+          }
+        }
+        return supportedLocales.first;
+      },
 
       home: login(),
 
