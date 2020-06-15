@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
+import 'internacionalizacao/translate.dart';
+
 class maisDetalhes extends StatefulWidget {
   int valor = 0;
   String nome = "";
@@ -66,7 +68,7 @@ class _maisDetalhesState extends State<maisDetalhes> {
                       ),
                       Expanded(
                           child: Text(
-                        "Mais detalhes sobre o medico: " + widget.nome,
+                              AppTranslate(context).text('descreicao') + widget.nome,
                         style: TextStyle(fontSize: 20, color: Colors.black),
                       )),
                     ],

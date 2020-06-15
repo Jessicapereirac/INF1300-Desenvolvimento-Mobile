@@ -1,0 +1,24 @@
+{
+  "login": "Log In",
+  "senha":  "Password",
+  "entrar": "Sing In",
+  "esq_senha": "Forgot your password? ",
+  "edit_profile": "edit profile",
+  "fisio" : "Physiotherapy",
+  "quiro" : "Chiropractic",
+  "detalhes": "more details ...",
+  "ligar" : "Call",
+  "email" : "Send email",
+  "cancelar": "Cancel",
+  "descreicao" : "More details about the doctor: ",
+  "registrar" : "Register",
+  "endereco": "Address",
+  "sexo": "Sex",
+  "fem": "Female",
+  "mas": "Male",
+  "outro": "Others",
+  "num": "Number (with DDD)",
+  "name": "Full name",
+  "termos" : "I accept the terms and conditions"
+
+}

@@ -1,6 +1,7 @@
 
 
 import 'package:com/Navigation.dart';
+import 'package:com/internacionalizacao/translate.dart';
 import 'package:flutter/material.dart';
 
 class login extends StatefulWidget {
@@ -26,166 +27,167 @@ class _loginState extends State<login> {
             color: Colors.black,
           ),),
       ),
-      body: Container(
-        padding: EdgeInsets.only(right: 15,left: 15),
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.only(right: 15,left: 15),
 
-        child: Column(
+          child: Column(
 
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(top: 60,bottom: 28),
-              child: Text("Log In",
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(top: 60,bottom: 28),
+                  child: Text("Log In",
 
-                style: TextStyle(
-                  color: Colors.black,
-                  fontFamily: 'Roboto',
-                  fontSize: 60,
-                  fontWeight: FontWeight.w300,
-                  letterSpacing: 1,
-                ),
-              )
-            ),
-            Padding(
-              padding: EdgeInsets.only(top: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-
-                children: <Widget>[
-                  Padding(padding: EdgeInsets.only(bottom: 10),
-                    child: Text("Email",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Roboto',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1,
-                      ),
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Roboto',
+                      fontSize: 60,
+                      fontWeight: FontWeight.w300,
+                      letterSpacing: 1,
                     ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
+                  )
+              ),
+              Padding(
+                  padding: EdgeInsets.only(top: 10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+
+                    children: <Widget>[
+                      Padding(padding: EdgeInsets.only(bottom: 10),
+                        child: Text("Email",
+                          style: TextStyle(
                             color: Colors.black,
-                            width: 3
-                        )
-
-                    ),
-                    child: TextField(
-
-                      keyboardType: TextInputType.emailAddress,
-                      cursorColor: Colors.black,
-
-
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Roboto',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: 1,
-                      ),
-                      decoration: InputDecoration.collapsed (hintText: ""),
-
-
-                      onChanged: ( String text){},
-                      controller: _ControllerEmail ,
-
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.only(top:10, bottom: 10),
-                    child: Text("Senha",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Roboto',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        border: Border.all(
-                            color: Colors.black,
-                            width: 3
-                        )
-
-                    ),
-                    child: TextField(
-
-                      keyboardType: TextInputType.text,
-                      obscureText: true,
-                      cursorColor: Colors.black,
-
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'Roboto',
-                        fontSize: 22,
-                        fontWeight: FontWeight.w300,
-                        letterSpacing: 1,
-                      ),
-                      decoration: InputDecoration.collapsed (hintText: ""),
-
-                      onChanged: ( String text){},
-                      controller: _ControllerSenha ,
-
-                    ),
-                  ),
-                  GestureDetector(
-                    child:
-                    Padding(padding: EdgeInsets.only(top: 6, left: 232),
-                      child: Text("Esqueceu a senha ?",
-                        style: TextStyle(
-                          color: Colors.blue,
-                          fontFamily: 'Roboto',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w700,
+                            fontFamily: 'Roboto',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 1,
+                          ),
                         ),
                       ),
-                    ),
-                    onTap: (){},
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.black,
+                                width: 3
+                            )
+
+                        ),
+                        child: TextField(
+
+                          keyboardType: TextInputType.emailAddress,
+                          cursorColor: Colors.black,
+
+
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 1,
+                          ),
+                          decoration: InputDecoration.collapsed (hintText: ""),
+
+
+                          onChanged: ( String text){},
+                          controller: _ControllerEmail ,
+
+                        ),
+                      ),
+                      Padding(padding: EdgeInsets.only(top:10, bottom: 10),
+                        child: Text(AppTranslate(context).text('senha'),
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 1,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            border: Border.all(
+                                color: Colors.black,
+                                width: 3
+                            )
+
+                        ),
+                        child: TextField(
+
+                          keyboardType: TextInputType.text,
+                          obscureText: true,
+                          cursorColor: Colors.black,
+
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontFamily: 'Roboto',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w300,
+                            letterSpacing: 1,
+                          ),
+                          decoration: InputDecoration.collapsed (hintText: ""),
+
+                          onChanged: ( String text){},
+                          controller: _ControllerSenha ,
+
+                        ),
+                      ),
+                      GestureDetector(
+                        child:
+                        Padding(padding: EdgeInsets.only(top: 6, left: 232),
+                          child: Text(AppTranslate(context).text('esq_senha'),
+                            style: TextStyle(
+                              color: Colors.blue,
+                              fontFamily: 'Roboto',
+                              fontSize: 16,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                        onTap: (){},
+                      )
+                    ],
                   )
-                ],
-              )
-            ),
-
-            Padding(padding: EdgeInsets.only(top: 36),
-            child: GestureDetector(
-              child: Container(
-                height: 80,
-
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      "Sing In",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontFamily: 'Roboto',
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                        letterSpacing: 1,
-                      ),),
-                  ],),
               ),
-              onTap: (){
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Navigation()));
-              },
-            )
-              ,)
-          ],
+
+              Padding(padding: EdgeInsets.only(top: 36),
+                child: GestureDetector(
+                  child: Container(
+                    height: 80,
+
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(15.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(AppTranslate(context).text('entrar'),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Roboto',
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                            letterSpacing: 1,
+                          ),),
+                      ],),
+                  ),
+                  onTap: (){
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Navigation()));
+                  },
+                )
+                ,)
+            ],
 
 
 
 
+          ),
         ),
-      ),
+      )
     );
   }
 }
