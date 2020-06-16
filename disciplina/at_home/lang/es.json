@@ -1,0 +1,27 @@
+{
+  "login" : "Iniciar Sesión",
+  "senha" :  "Contraseña",
+  "entrar" : "Iniciar Sesión",
+  "esq_senha" : "¿ Olvido la contraseña ?",
+  "edit_profile": "editar perfil",
+  "fisio" : "Fisioterapia",
+  "quiro" : "Quiropráctica",
+  "detalhes": "más detalles ...",
+  "ligar" : "Encender",
+  "email" : "Enviar correo electrónico",
+  "cancelar": "Cancelar",
+  "descreicao" : "Más detalles sobre el médico: ",
+  "registro" : "Registrarse",
+  "endereco": "Habla a",
+  "cep": "Código postal",
+  "estado": "Estado",
+  "cidade": "Ciudad",
+  "sexo": "Sexo",
+  "fem": "Femenino",
+  "mas": "Masculino",
+  "outro": "Otros",
+  "num": "Número (con código de área)",
+  "name": "Nombre completo",
+  "termos" : "Acepto los términos y condiciones"
+
+}

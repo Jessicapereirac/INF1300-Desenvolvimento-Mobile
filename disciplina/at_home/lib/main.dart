@@ -18,7 +18,8 @@ void main() => runApp(
       ),
       supportedLocales: [
         Locale('pt', 'BR'),
-        Locale('en', 'US')
+        Locale('en', 'US'),
+        Locale('es', 'US')
 
       ],
       localizationsDelegates: [
@@ -32,8 +33,12 @@ void main() => runApp(
         if (locale == null) { return supportedLocales.first; }
 
         for (var supportedLocale in supportedLocales) {
+          print(locale.countryCode);
+
           if (supportedLocale.languageCode == locale.languageCode &&
               supportedLocale.countryCode == locale.countryCode) {
+
+
             return supportedLocale;
           }
         }

@@ -37,7 +37,7 @@ class _loginState extends State<login> {
             children: <Widget>[
               Padding(
                   padding: EdgeInsets.only(top: 60,bottom: 28),
-                  child: Text("Log In",
+                  child: Text(AppTranslate(context).text('login'),
 
                     style: TextStyle(
                       color: Colors.black,

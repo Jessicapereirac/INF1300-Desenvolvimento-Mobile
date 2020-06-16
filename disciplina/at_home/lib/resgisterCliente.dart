@@ -116,7 +116,7 @@ class _registerClienteState extends State<registerCliente> {
                             Padding(
                                 padding: EdgeInsets.only(top: 60, bottom: 28),
                                 child: Text(
-                                  "Register",
+                                  AppTranslate(context).text('registro'),
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontFamily: 'Roboto',
@@ -135,7 +135,7 @@ class _registerClienteState extends State<registerCliente> {
                                       Padding(
                                         padding: EdgeInsets.only(bottom: 10),
                                         child: Text(
-                                          "Nome Completo",
+                                          AppTranslate(context).text('name'),
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Roboto',
@@ -205,7 +205,7 @@ class _registerClienteState extends State<registerCliente> {
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         child: Text(
-                                          "Senha",
+                                          AppTranslate(context).text('senha'),
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Roboto',
@@ -240,7 +240,7 @@ class _registerClienteState extends State<registerCliente> {
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         child: Text(
-                                          "Endereço",
+                                          AppTranslate(context).text('endereco'),
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Roboto',
@@ -285,7 +285,7 @@ class _registerClienteState extends State<registerCliente> {
                                             letterSpacing: 1,
                                           ),
                                           decoration: InputDecoration(
-                                            labelText: "CEP",
+                                            labelText: AppTranslate(context).text('cep'),
                                             border: OutlineInputBorder(),
                                           ),
                                           onChanged: (String text) {},
@@ -296,7 +296,7 @@ class _registerClienteState extends State<registerCliente> {
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         child: Text(
-                                          "Numero ( com DDD )",
+                                          AppTranslate(context).text('num'),
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Roboto',
@@ -331,7 +331,7 @@ class _registerClienteState extends State<registerCliente> {
                                         padding: EdgeInsets.only(
                                             top: 10, bottom: 10),
                                         child: Text(
-                                          "Sexo:",
+                                          AppTranslate(context).text('sexo'),
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontFamily: 'Roboto',
@@ -356,7 +356,7 @@ class _registerClienteState extends State<registerCliente> {
                                                     });
                                                   }),
                                               Text(
-                                                "Feminino",
+                                                AppTranslate(context).text('fem'),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: 'Roboto',
@@ -380,7 +380,7 @@ class _registerClienteState extends State<registerCliente> {
                                                     });
                                                   }),
                                               Text(
-                                                "Masculino",
+                                                AppTranslate(context).text('mas'),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: 'Roboto',
@@ -404,7 +404,7 @@ class _registerClienteState extends State<registerCliente> {
                                                     });
                                                   }),
                                               Text(
-                                                "Outros",
+                                                AppTranslate(context).text('outro'),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: 'Roboto',
@@ -428,7 +428,7 @@ class _registerClienteState extends State<registerCliente> {
                                                   }),
                                               Expanded(
                                                   child: Text(
-                                                "Aceito os termos e condições",
+                                                    AppTranslate(context).text('termos'),
                                                 style: TextStyle(
                                                   color: Colors.black,
                                                   fontFamily: 'Roboto',
@@ -457,7 +457,7 @@ class _registerClienteState extends State<registerCliente> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: <Widget>[
                                       Text(
-                                        "Register",
+                                        AppTranslate(context).text('registro'),
                                         style: TextStyle(
                                           color: Colors.white,
                                           fontFamily: 'Roboto',
