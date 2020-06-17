@@ -76,21 +76,20 @@ class _NavigationState extends State<Navigation> {
                     child: GestureDetector(
                       child: Stack(
                         children: <Widget>[
-                          CircleAvatar(
+                          ClipOval(
+                            child: Material(
+                              color: Colors.grey,
+                              child: image != null ? Image.file(image,
+                                width: 105,
+                                height: 100,
+                                fit: BoxFit.fill,
+                              ):
+                              Center(
 
-                            backgroundColor: Colors.grey,
-                            radius: 50.0,
-
-                            child: image != null ? Image.file(image,
-                            fit: ,): Center(
-
-                              child: Icon(
-                                Icons.person_outline,
-                                color: Colors.white,
-                                size: 100.0,
+                                child: Icon(Icons.person_outline, color: Colors.white, size: 100.0, ),
                               ),
+                            )
 
-                            ),
                           ),
 
                         ],
