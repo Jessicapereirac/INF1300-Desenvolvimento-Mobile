@@ -22,6 +22,9 @@
   "outro": "Outros",
   "num": "Número (com DDD)",
   "name": "Nome Completo",
-  "termos" : "Aceito os termos e condições"
+  "termos" : "Aceito os termos e condições",
+  "edit_foto": "Editar foto",
+  "camera" : "Camêra",
+  "galeria": "Galeria"
 
 }

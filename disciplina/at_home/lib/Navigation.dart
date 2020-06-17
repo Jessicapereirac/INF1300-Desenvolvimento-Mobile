@@ -1,3 +1,6 @@
+import 'package:camera/camera.dart';
+import 'package:com/take_pic.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:com/professional_list.dart';
 
@@ -6,6 +9,7 @@ import 'internacionalizacao/translate.dart';
 class Navigation extends StatefulWidget {
   @override
   _NavigationState createState() => _NavigationState();
+
 }
 
 class _NavigationState extends State<Navigation> {
@@ -37,20 +41,63 @@ class _NavigationState extends State<Navigation> {
                 children: <Widget>[
                   Padding(
                     padding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 30.0),
-                    child: Stack(
-                      children: <Widget>[
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          backgroundImage: null,
-                          radius: 50.0,
-                        ),
-                        Icon(
-                          Icons.person_outline,
-                          color: Colors.white,
-                          size: 100.0,
-                        )
-                      ],
-                    ),
+                    child: GestureDetector(
+                      child: Stack(
+                        children: <Widget>[
+                          CircleAvatar(
+
+                            backgroundColor: Colors.grey,
+                            backgroundImage: null,
+                            radius: 50.0,
+                          ),
+                          Icon(
+                            Icons.person_outline,
+                            color: Colors.white,
+                            size: 100.0,
+
+                          )
+                        ],
+                      ),
+                      onTap: (){
+
+                        showCupertinoModalPopup(context: context, builder: (BuildContext context)  =>
+                            CupertinoActionSheet (
+                                title: Text(AppTranslate(context).text('edit_foto'),
+                                  style:
+                                  TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 20,
+                                      fontFamily: 'Roboto'
+                                  )),
+
+                                actions: <Widget>[
+                                  CupertinoActionSheetAction(
+                                    child: Text(AppTranslate(context).text('camera')),
+                                    onPressed: () async {
+
+                                      principal();
+
+                                    },
+                                  ),
+                                  CupertinoActionSheetAction(
+                                    child: Text(AppTranslate(context).text('galeria')),
+                                    onPressed: () {
+                                      Navigator.pop(context, 'galeria');
+                                    },
+                                  )
+                                ],
+                                cancelButton: CupertinoActionSheetAction(
+                                  child: Text(AppTranslate(context).text('cancelar')),
+                                  isDefaultAction: true,
+                                  onPressed: () {
+                                    Navigator.pop(context, 'Cancel');
+                                  },
+                                )
+
+                            ));
+
+                      },
+                    )
                   ),
                   Column(
                     children: <Widget>[
@@ -184,3 +231,22 @@ class _NavigationState extends State<Navigation> {
         ));
   }
 }
+
+
+Future<void> principal() async {
+  // Ensure that plugin services are initialized so that `availableCameras()`
+  // can be called before `runApp()`
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Obtain a list of the available cameras on the device.
+  final cameras = await availableCameras();
+
+  // Get a specific camera from the list of available cameras.
+  final firstCamera = cameras.first;
+
+  return TakePictureScreen(
+        // Pass the appropriate camera to the TakePictureScreen widget.
+        camera: firstCamera
+      );
+}
+

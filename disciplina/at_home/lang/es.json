@@ -22,6 +22,10 @@
   "outro": "Otros",
   "num": "Número (con código de área)",
   "name": "Nombre completo",
-  "termos" : "Acepto los términos y condiciones"
+  "termos" : "Acepto los términos y condiciones",
+  "edit_foto": "Editar foto",
+  "camera" : "Camêra",
+  "galeria": "Galeria"
+
 
 }
