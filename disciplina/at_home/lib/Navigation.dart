@@ -1,21 +1,53 @@
+
+
+import 'dart:io';
+
 import 'package:camera/camera.dart';
 import 'package:com/take_pic.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:com/professional_list.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 import 'internacionalizacao/translate.dart';
 
 class Navigation extends StatefulWidget {
   @override
-  _NavigationState createState() => _NavigationState();
+  _NavigationState createState() => _NavigationState(
+
+  );
 
 }
-
 class _NavigationState extends State<Navigation> {
+
   void push_professionalListPage(String service) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => professional_List(service)));
+  }
+
+  File image;
+  File imagemTemp;
+
+
+  Future<void> pegar_imagemgaleria() async {
+
+
+    imagemTemp = await ImagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
+      image = imagemTemp;
+    });
+  }
+
+
+  Future<void> pegar_imagemcamera() async {
+
+
+    imagemTemp = await ImagePicker.pickImage(source: ImageSource.camera);
+    setState(() {
+      image = imagemTemp;
+    });
+
   }
 
   @override
@@ -47,15 +79,20 @@ class _NavigationState extends State<Navigation> {
                           CircleAvatar(
 
                             backgroundColor: Colors.grey,
-                            backgroundImage: null,
                             radius: 50.0,
-                          ),
-                          Icon(
-                            Icons.person_outline,
-                            color: Colors.white,
-                            size: 100.0,
 
-                          )
+                            child: image != null ? Image.file(image,
+                            fit: ,): Center(
+
+                              child: Icon(
+                                Icons.person_outline,
+                                color: Colors.white,
+                                size: 100.0,
+                              ),
+
+                            ),
+                          ),
+
                         ],
                       ),
                       onTap: (){
@@ -75,14 +112,14 @@ class _NavigationState extends State<Navigation> {
                                     child: Text(AppTranslate(context).text('camera')),
                                     onPressed: () async {
 
-                                      principal();
+                                      pegar_imagemcamera();
 
                                     },
                                   ),
                                   CupertinoActionSheetAction(
                                     child: Text(AppTranslate(context).text('galeria')),
                                     onPressed: () {
-                                      Navigator.pop(context, 'galeria');
+                                      pegar_imagemgaleria();
                                     },
                                   )
                                 ],
@@ -230,23 +267,17 @@ class _NavigationState extends State<Navigation> {
           ),
         ));
   }
+
+  cameras() async {
+
+
+    WidgetsFlutterBinding.ensureInitialized();
+
+    final cameras = await availableCameras();
+
+    return cameras.first;
+
+  }
 }
 
-
-Future<void> principal() async {
-  // Ensure that plugin services are initialized so that `availableCameras()`
-  // can be called before `runApp()`
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // Obtain a list of the available cameras on the device.
-  final cameras = await availableCameras();
-
-  // Get a specific camera from the list of available cameras.
-  final firstCamera = cameras.first;
-
-  return TakePictureScreen(
-        // Pass the appropriate camera to the TakePictureScreen widget.
-        camera: firstCamera
-      );
-}
 

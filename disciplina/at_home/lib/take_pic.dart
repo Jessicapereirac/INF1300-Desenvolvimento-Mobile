@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:path/path.dart' show join;
 import 'package:path_provider/path_provider.dart';
 
+
 // A screen that allows users to take a picture using a given camera.
 class TakePictureScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -22,6 +23,7 @@ class TakePictureScreen extends StatefulWidget {
 class TakePictureScreenState extends State<TakePictureScreen> {
   CameraController _controller;
   Future<void> _initializeControllerFuture;
+
 
   @override
   void initState() {
@@ -48,6 +50,9 @@ class TakePictureScreenState extends State<TakePictureScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+
+    print("oiiii");
     return Scaffold(
       appBar: AppBar(title: Text('Take a picture')),
       // Wait until the controller is initialized before displaying the
@@ -112,11 +117,6 @@ class DisplayPictureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
-      body: Image.file(File(imagePath)),
-    );
+    return Image.file(File(imagePath));
   }
 }

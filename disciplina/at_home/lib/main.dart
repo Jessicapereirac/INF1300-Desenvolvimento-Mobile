@@ -1,16 +1,22 @@
-import 'dart:math';
+
+import 'dart:async';
+
 
 import 'package:camera/camera.dart';
 import 'package:com/login.dart';
-import 'package:com/pagInicial.dart';
-import 'package:com/resgisterCliente.dart';
-import 'package:com/Navigation.dart';
+import 'package:com/take_pic.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'internacionalizacao/localizations.dart';
 
 Future<void> main() async {
+
+  WidgetsFlutterBinding.ensureInitialized();
+
+
+
 
   runApp(
       MaterialApp(
@@ -44,10 +50,9 @@ Future<void> main() async {
             }
             return supportedLocales.first;
           },
-
-
           home: login(),
 
       )
   );
 }
+
