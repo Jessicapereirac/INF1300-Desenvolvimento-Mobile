@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:url_launcher/url_launcher.dart';
+import 'package:intent/intent.dart' as android_intent;
+import 'package:intent/action.dart' as android_action;
 
 import 'internacionalizacao/translate.dart';
 import 'maisDetalhes.dart';
@@ -104,6 +106,14 @@ class _professionalListBiulder {
         print("erro");
 
     }
+    _launchURL() async {
+      // Replace 12345678 with your tel. no.
+
+      android_intent.Intent()
+        ..setAction(android_action.Action.ACTION_CALL)
+        ..setData(Uri(scheme: "tel", path: "12345678"))
+        ..startActivity().catchError((e) => print(e));
+    }
 
 
     return ListTile(
@@ -136,14 +146,20 @@ class _professionalListBiulder {
                     actions: <Widget>[
                       CupertinoActionSheetAction(
                         child: Text(AppTranslate(context).text('ligar')),
+
                         onPressed: () {
-                          Navigator.pop(context, 'ligar');
-                        },
+                          print("oii");
+                          launch("tel://21213123123");
+                          //_launchURL; // alterar para telefone do banco
+
+                        }
+
                       ),
                       CupertinoActionSheetAction(
                         child: Text(AppTranslate(context).text('email')),
                         onPressed: () {
-                          Navigator.pop(context, 'email');
+                          print("oii");
+                          launch('mailto@gmail.com');
                         },
                       )
                     ],
@@ -188,7 +204,6 @@ class _professionalListBiulder {
         );
   }
 }
-
 
 
 
