@@ -150,7 +150,7 @@ class _professionalListBiulder {
                         onPressed: () {
                           print("oii");
                           launch("tel://21213123123");
-                          //_launchURL; // alterar para telefone do banco
+                          //TODO alterar para telefone do banco
 
                         }
 
@@ -159,7 +159,8 @@ class _professionalListBiulder {
                         child: Text(AppTranslate(context).text('email')),
                         onPressed: () {
                           print("oii");
-                          launch('mailto@gmail.com');
+                          launch("mailto:jessicapereiraa2@gmail.com");
+                          //TODO alterar para email do banco do medico
                         },
                       )
                     ],
