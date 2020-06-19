@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:intent/intent.dart' as android_intent;
 import 'package:intent/action.dart' as android_action;
+
 
 import 'internacionalizacao/translate.dart';
 import 'maisDetalhes.dart';
@@ -27,6 +29,7 @@ class _professional_listState extends State<professional_List> {
   _professional_listState(this._service) {
     _professionalBiulder = new _professionalListBiulder(_name, _grade, _imagens);
   }
+
 
 
 
@@ -69,8 +72,11 @@ class _professionalListBiulder {
   List<String> name;
   List<double> grade;
   List<String> imagens;
+  String number = "21981144225"; //TODO colocar numero do medico
+
 
   _professionalListBiulder(this.name, this.grade, this.imagens);
+
 
 
   @override
@@ -149,7 +155,7 @@ class _professionalListBiulder {
 
                         onPressed: () {
                           print("oii");
-                          launch("tel://21213123123");
+                          launch("tel://"+number);
                           //TODO alterar para telefone do banco
 
                         }
@@ -196,7 +202,19 @@ class _professionalListBiulder {
                 style: TextStyle(
                     color: Colors.black, fontFamily: 'Roboto', fontSize: 10),
               ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(left: 190),
+              child: GestureDetector(
+                child: Icon(Icons.share, color: Colors.black),
+                onTap: ()
+                {
+                  print("oii");
+                  Share.share(AppTranslate(context).text('share')+ number);
+                },
+              ),
             )
+
           ],
 
 
