@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
+import 'package:flutter/material.dart';
 
 final String clientTable = "clientTable";
 final String idColumn = "id";
@@ -11,7 +12,7 @@ final String phoneColumn = "phone";
 final String passwordColumn = "password";
 final String imgColumn = "image";
 final String zipcodeColumn = "zipCode";
-final String cityColumn = "city";
+final String regionColumn = "region";
 final String admindistrictColumn = "adminDistrict";
 
 class ClientHelper {
@@ -34,46 +35,74 @@ class ClientHelper {
   Future<Database> initDb() async {
     final databasePath = await getDatabasesPath();
     final path = join(databasePath, "clients.db");
-
     return openDatabase(path, version: 1,
         onCreate: (Database db, int newerVersion) async {
       await db.execute(
           "CREATE TABLE $clientTable($idColumn INTEGER PRIMARY KEY,"
           "$nameColumn TEXT NOT NULL, $sexColumn TEXT, $emailColumn TEXT NOT NULL, $passwordColumn TEXT NOT NULL, "
           "$phoneColumn TEXT NOT NULL, $imgColumn TEXT, $admindistrictColumn TEXT NOT NULL,"
-          "$cityColumn TEXT NOT NULL, $zipcodeColumn TEXT NOT NULL)");
+          "$regionColumn TEXT NOT NULL, $zipcodeColumn TEXT NOT NULL)");
     });
   }
 
-  Future<Client> saveContact(Client client) async {
+  Future<Client> saveClient(Client client) async {
     Database dbClient = await db;
     client.id = await dbClient.insert(clientTable, client.toMap());
     return client;
   }
 
-  Future<Client> getContact(int id) async {
+  Future<Client> getClient(int id) async {
     Database dbClient = await db;
     List<Map> maps = await dbClient.query(clientTable,
-        columns: [idColumn, nameColumn, sexColumn, emailColumn, phoneColumn, imgColumn],
+        columns: [
+          idColumn,
+          nameColumn,
+          sexColumn,
+          emailColumn,
+          phoneColumn,
+          imgColumn
+        ],
         where: "$idColumn = ?",
         whereArgs: [id]);
     if (maps.length > 0) return Client.fromMap(maps.first);
     return null;
   }
 
-  Future<int> deleteContact(int id) async {
+  Future<Map<String, Client>> LogInClientbyEmail(
+      String email, String password) async {
+    Database dbClient = await db;
+    Map<String, Client> map_client = {"client": null};
+    List<Map> map_id = await dbClient.query(clientTable,
+        columns: [idColumn], where: "$emailColumn = ?", whereArgs: [email]);
+    if (map_id.length == 0) return map_client;
+    List<Map> maps_client = await dbClient.rawQuery(
+        "SELECT $nameColumn, $emailColumn, $phoneColumn, $imgColumn FROM $clientTable WHERE $idColumn = ${map_id[0][idColumn]} AND $passwordColumn = \'$password\'");
+    if( maps_client.length == 0) return map_client;
+    map_client['client'] = Client.fromMap(maps_client[0]);
+    return map_client;
+  }
+
+  Future<int> clientRegisted(String email) async {
+    Database dbClient = await db;
+    List<Map> maps = await dbClient.query(clientTable,
+        columns: [emailColumn], where: "$emailColumn = ?", whereArgs: [email]);
+    if (maps.length > 0) return 1;
+    return 0;
+  }
+
+  Future<int> deleteClient(int id) async {
     Database dbClient = await db;
     return await dbClient
         .delete(clientTable, where: "$idColumn = ?", whereArgs: [id]);
   }
 
-  Future<int> updateContact(Client contact) async {
+  Future<int> updateClient(Client contact) async {
     Database dbClient = await db;
     return await dbClient.update(clientTable, contact.toMap(),
         where: "$idColumn = ?", whereArgs: [contact.id]);
   }
 
-  Future<List> getAllContacts() async {
+  Future<List> getAllClients() async {
     Database dbClient = await db;
     List all_clients = await dbClient.rawQuery("SELECT * FROM $clientTable");
     List<Client> listContact = List();
@@ -115,7 +144,7 @@ class Client {
     this.phone = map[phoneColumn];
     this.password = map[passwordColumn];
     this.zipcode = map[zipcodeColumn];
-    this.city = map[cityColumn];
+    this.city = map[regionColumn];
     this.admindistrict = map[admindistrictColumn];
     this.img = map[imgColumn];
   }
@@ -127,7 +156,7 @@ class Client {
       emailColumn: this.email,
       passwordColumn: this.password,
       admindistrictColumn: this.admindistrict,
-      cityColumn: this.city,
+      regionColumn: this.city,
       zipcodeColumn: this.zipcode,
       phoneColumn: this.phone,
       imgColumn: this.img

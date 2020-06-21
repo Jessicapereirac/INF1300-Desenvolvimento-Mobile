@@ -11,3 +11,13 @@ import Flutter
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 }
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [GMSServices provideAPIKey:@"AIzaSyBrMSuYLwUqS9fmAHpkmpwH7n7sBRcILDw"];
+  [GeneratedPluginRegistrant registerWithRegistry:self];
+  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+}
+@end

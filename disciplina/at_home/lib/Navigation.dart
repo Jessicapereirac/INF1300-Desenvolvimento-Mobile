@@ -1,7 +1,5 @@
-
-
 import 'dart:io';
-
+import 'package:com/helpers/client_helper.dart';
 import 'package:camera/camera.dart';
 import 'package:com/take_pic.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,45 +7,44 @@ import 'package:flutter/material.dart';
 import 'package:com/professional_list.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 import 'internacionalizacao/translate.dart';
 
 class Navigation extends StatefulWidget {
+  Client client;
+
+  Navigation(this.client);
   @override
-  _NavigationState createState() => _NavigationState(
-
-  );
-
+  _NavigationState createState() => _NavigationState(this.client);
 }
+
 class _NavigationState extends State<Navigation> {
+  Client client;
+  ClientHelper client_db = ClientHelper();
+
+  _NavigationState(this.client);
 
   void push_professionalListPage(String service) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => professional_List(service)));
   }
 
-  File image;
   File imagemTemp;
 
-
   Future<void> pegar_imagemgaleria() async {
-
-
     imagemTemp = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
-      image = imagemTemp;
+      client.img = imagemTemp.path;
+      client_db.updateClient(client);
+
     });
   }
 
-
   Future<void> pegar_imagemcamera() async {
-
-
     imagemTemp = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
-      image = imagemTemp;
+      client.img = imagemTemp.path;
+      client_db.updateClient(client);
     });
-
   }
 
   @override
@@ -58,8 +55,7 @@ class _NavigationState extends State<Navigation> {
           title: Text(
             "at home",
             textAlign: TextAlign.start,
-            style: TextStyle(
-                color: Colors.black, fontSize: 25),
+            style: TextStyle(color: Colors.black, fontSize: 25),
           ),
           actions: <Widget>[
             IconButton(
@@ -72,73 +68,72 @@ class _NavigationState extends State<Navigation> {
               Row(
                 children: <Widget>[
                   Padding(
-                    padding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 30.0),
-                    child: GestureDetector(
-                      child: Stack(
-                        children: <Widget>[
-                          ClipOval(
-                            child: Material(
+                      padding: EdgeInsets.fromLTRB(15.0, 10.0, 10.0, 30.0),
+                      child: GestureDetector(
+                        child: Stack(
+                          children: <Widget>[
+                            ClipOval(
+                                child: Material(
                               color: Colors.grey,
-                              child: image != null ? Image.file(image,
-                                width: 105,
-                                height: 100,
-                                fit: BoxFit.fill,
-                              ):
-                              Center(
-
-                                child: Icon(Icons.person_outline, color: Colors.white, size: 100.0, ),
-                              ),
-                            )
-
-                          ),
-
-                        ],
-                      ),
-                      onTap: (){
-
-                        showCupertinoModalPopup(context: context, builder: (BuildContext context)  =>
-                            CupertinoActionSheet (
-                                title: Text(AppTranslate(context).text('edit_foto'),
-                                  style:
-                                  TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 20,
-                                      fontFamily: 'Roboto'
-                                  )),
-
-                                actions: <Widget>[
-                                  CupertinoActionSheetAction(
-                                    child: Text(AppTranslate(context).text('camera')),
-                                    onPressed: () async {
-
-                                      pegar_imagemcamera();
-
-                                    },
-                                  ),
-                                  CupertinoActionSheetAction(
-                                    child: Text(AppTranslate(context).text('galeria')),
-                                    onPressed: () {
-                                      pegar_imagemgaleria();
-                                    },
-                                  )
-                                ],
-                                cancelButton: CupertinoActionSheetAction(
-                                  child: Text(AppTranslate(context).text('cancelar')),
-                                  isDefaultAction: true,
-                                  onPressed: () {
-                                    Navigator.pop(context, 'Cancel');
-                                  },
-                                )
-
-                            ));
-
-                      },
-                    )
-                  ),
+                              child: client.img != null
+                                  ? Image.file(
+                                      File(client.img),
+                                      width: 105,
+                                      height: 100,
+                                      fit: BoxFit.fill,
+                                    )
+                                  : Center(
+                                      child: Icon(
+                                        Icons.person_outline,
+                                        color: Colors.white,
+                                        size: 100.0,
+                                      ),
+                                    ),
+                            )),
+                          ],
+                        ),
+                        onTap: () {
+                          showCupertinoModalPopup(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  CupertinoActionSheet(
+                                      title: Text(
+                                          AppTranslate(context)
+                                              .text('edit_foto'),
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 20,
+                                              fontFamily: 'Roboto')),
+                                      actions: <Widget>[
+                                        CupertinoActionSheetAction(
+                                          child: Text(AppTranslate(context)
+                                              .text('camera')),
+                                          onPressed: () async {
+                                            pegar_imagemcamera();
+                                          },
+                                        ),
+                                        CupertinoActionSheetAction(
+                                          child: Text(AppTranslate(context)
+                                              .text('galeria')),
+                                          onPressed: () {
+                                            pegar_imagemgaleria();
+                                          },
+                                        )
+                                      ],
+                                      cancelButton: CupertinoActionSheetAction(
+                                        child: Text(AppTranslate(context)
+                                            .text('cancelar')),
+                                        isDefaultAction: true,
+                                        onPressed: () {
+                                          Navigator.pop(context, 'Cancel');
+                                        },
+                                      )));
+                        },
+                      )),
                   Column(
                     children: <Widget>[
                       Text(
-                        "Nome usuário",
+                        client.name,
                         style: TextStyle(
                             color: Colors.black,
                             fontFamily: "Roboto",
@@ -185,7 +180,7 @@ class _NavigationState extends State<Navigation> {
                       ],
                     ),
                     onTap: () {
-                      this.push_professionalListPage(AppTranslate(context).text('fisio'));
+                      this.push_professionalListPage('F');
                     },
                   ),
                   GestureDetector(
@@ -210,7 +205,7 @@ class _NavigationState extends State<Navigation> {
                               margin: EdgeInsets.all(10),
                             ),
                             onTap: () {
-                              this.push_professionalListPage("Shiatsu");
+                              this.push_professionalListPage("S");
                             },
                           ),
                         ),
@@ -223,7 +218,7 @@ class _NavigationState extends State<Navigation> {
                       ],
                     ),
                     onTap: () {
-                      this.push_professionalListPage("Shiatsu");
+                      this.push_professionalListPage("S");
                     },
                   ),
                   GestureDetector(
@@ -248,7 +243,7 @@ class _NavigationState extends State<Navigation> {
                                 margin: EdgeInsets.all(10),
                               ),
                               onTap: () {
-                                this.push_professionalListPage(AppTranslate(context).text('quiro'));
+                                this.push_professionalListPage('Q');
                               },
                             )),
                         Text(AppTranslate(context).text('quiro'),
@@ -268,15 +263,10 @@ class _NavigationState extends State<Navigation> {
   }
 
   cameras() async {
-
-
     WidgetsFlutterBinding.ensureInitialized();
 
     final cameras = await availableCameras();
 
     return cameras.first;
-
   }
 }
-
-

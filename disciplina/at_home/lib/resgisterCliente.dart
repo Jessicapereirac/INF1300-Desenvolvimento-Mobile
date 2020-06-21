@@ -3,6 +3,8 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:com/helpers/client_helper.dart';
+import 'package:com/Navigation.dart';
 
 import 'internacionalizacao/translate.dart';
 
@@ -49,8 +51,8 @@ class _registerClienteState extends State<registerCliente> {
     "SE",
     "TO"
   ];
-  List<String> adminDistricts = ["Cidade"];
-  String dropdownDistrictValue = "Cidade" ;
+  List<String> adminDistricts = ["City"];
+  String dropdownDistrictValue = "City" ;
   String dropdownStateValue = "AC";
 
   Future<Map> getData(String uf) async {
@@ -61,7 +63,7 @@ class _registerClienteState extends State<registerCliente> {
 
   Future dropdownStateChange(String newValue) async {
     Map resBody = await getData(newValue);
-    adminDistricts = ["Cidade"];
+    adminDistricts = ["City"];
     debugPrint("${resBody['data'].length}");
     setState(() {
       dropdownStateValue = newValue;
@@ -77,6 +79,55 @@ class _registerClienteState extends State<registerCliente> {
     setState(() {
       dropdownDistrictValue = newValue;
     });
+  }
+
+   Future<Client> registerClient(BuildContext context) async {
+    Map<String, dynamic> client_map = {};
+    Client new_client;
+    ClientHelper db_client = ClientHelper();
+    if (_ControllerNome.text.length < 1 ||
+        _ControllerEmail.text.length < 1 ||
+        _ControllerNumero.text.length < 1 ||
+        _ControllerSenha.text.length < 1 ||
+        _ControllerZipCode.text.length < 1 ||
+        dropdownStateValue.length < 1 ||
+        dropdownDistrictValue.length < 1) {
+      final snack = SnackBar(
+        content: Text("Preencha todos os campos!"),
+        duration: Duration(seconds: 4),
+      );
+
+      Scaffold.of(context).showSnackBar(snack);
+      return null;
+    } else if (!termos) {
+      final snack = SnackBar(
+        content: Text("Aceite os termos e serviços para continuar"),
+        duration: Duration(seconds: 4),
+      );
+
+      Scaffold.of(context).showSnackBar(snack);
+      return null;
+    }
+    if (await db_client.clientRegisted(_ControllerEmail.text) == 1) {
+      final snack = SnackBar(
+        content:
+            Text("Usuário de email ${_ControllerEmail.text} já cadastrado"),
+        duration: Duration(seconds: 4),
+      );
+      Scaffold.of(context).showSnackBar(snack);
+      return null;
+    }
+    client_map[nameColumn] = _ControllerNome.text;
+    client_map[emailColumn] = _ControllerEmail.text;
+    client_map[passwordColumn] = _ControllerSenha.text;
+    client_map[phoneColumn] = _ControllerNumero.text;
+    client_map[regionColumn] = dropdownStateValue;
+    client_map[admindistrictColumn] = dropdownDistrictValue;
+    client_map[zipcodeColumn] = _ControllerZipCode.text;
+    client_map[sexColumn] = escolha;
+    new_client = Client.fromMap(client_map);
+    new_client = await db_client.saveClient(new_client);
+    return new_client;
   }
 
   @override
@@ -151,7 +202,7 @@ class _registerClienteState extends State<registerCliente> {
                                                 color: Colors.black, width: 3)),
                                         child: TextField(
                                           keyboardType:
-                                              TextInputType.emailAddress,
+                                              TextInputType.text,
                                           cursorColor: Colors.black,
                                           style: TextStyle(
                                             color: Colors.black,
@@ -163,7 +214,7 @@ class _registerClienteState extends State<registerCliente> {
                                           decoration: InputDecoration.collapsed(
                                               hintText: ""),
                                           onChanged: (String text) {},
-                                          controller: _ControllerEmail,
+                                          controller: _ControllerNome,
                                         ),
                                       ),
                                       Padding(
@@ -312,7 +363,7 @@ class _registerClienteState extends State<registerCliente> {
                                                 color: Colors.black, width: 3)),
                                         child: TextField(
                                           keyboardType:
-                                              TextInputType.emailAddress,
+                                              TextInputType.number,
                                           cursorColor: Colors.black,
                                           style: TextStyle(
                                             color: Colors.black,
@@ -324,7 +375,7 @@ class _registerClienteState extends State<registerCliente> {
                                           decoration: InputDecoration.collapsed(
                                               hintText: ""),
                                           onChanged: (String text) {},
-                                          controller: _ControllerEmail,
+                                          controller: _ControllerNumero
                                         ),
                                       ),
                                       Padding(
@@ -469,8 +520,15 @@ class _registerClienteState extends State<registerCliente> {
                                     ],
                                   ),
                                 ),
-                                onTap: () {
-                                  //TODO
+                                onTap: () async{
+                                  Client client;
+                                  client = await this.registerClient(context);
+                                  if( client == null ) return;
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              Navigation(client)));
                                 },
                               ),
                             )
