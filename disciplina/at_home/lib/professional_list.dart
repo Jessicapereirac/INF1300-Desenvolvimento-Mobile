@@ -181,6 +181,7 @@ class _professionalListBiulder {
               style: TextStyle(
                   color: Colors.black, fontFamily: 'Roboto', fontSize: 15),
             ),
+<<<<<<< HEAD
           ),
           Padding(
             padding: EdgeInsets.only(left: 190),
@@ -195,5 +196,24 @@ class _professionalListBiulder {
         ],
       ),
     );
+=======
+            Padding(
+              padding: EdgeInsets.only(left: 190),
+              child: GestureDetector(
+                child: Icon(Icons.share, color: Colors.black),
+                onTap: ()
+                {
+                  Share.share(AppTranslate(context).text('share')+ number);
+                },
+              ),
+            )
+
+          ],
+
+
+        ),
+
+        );
+>>>>>>> c4ee832d49dcc191d6fb71bc3aeb15186dbe5cfd
   }
 }
