@@ -209,7 +209,6 @@ class _professionalListBiulder {
                 child: Icon(Icons.share, color: Colors.black),
                 onTap: ()
                 {
-                  print("oii");
                   Share.share(AppTranslate(context).text('share')+ number);
                 },
               ),

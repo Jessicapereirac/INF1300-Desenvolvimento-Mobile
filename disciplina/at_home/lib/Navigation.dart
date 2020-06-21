@@ -31,8 +31,6 @@ class _NavigationState extends State<Navigation> {
 
 
   Future<void> pegar_imagemgaleria() async {
-
-
     imagemTemp = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       image = imagemTemp;
@@ -41,8 +39,6 @@ class _NavigationState extends State<Navigation> {
 
 
   Future<void> pegar_imagemcamera() async {
-
-
     imagemTemp = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       image = imagemTemp;
