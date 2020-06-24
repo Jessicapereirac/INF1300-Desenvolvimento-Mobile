@@ -1,7 +1,12 @@
+import 'dart:typed_data';
+
+import 'package:flutter/services.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:flutter/material.dart';
+import 'dart:io';
 
 final String professionalTable = "professionalTable";
 final String idColumn = "id";
@@ -14,7 +19,10 @@ final String imgColumn = "image";
 final String zipcodeColumn = "zipCode";
 final String regionColumn = "region";
 final String admindistrictColumn = "adminDistrict";
-final String serviceColumn = "serviceColumn";
+final String serviceColumn = "service";
+final String gradeColumn = "grade";
+final String desc1Column = "Desc1";
+final String desc12Column = "Desc2";
 
 
 class ProfessionalHelper {
@@ -35,16 +43,13 @@ class ProfessionalHelper {
   }
 
   Future<Database> initDb() async {
-    final databasePath = await getDatabasesPath();
-    final path = join(databasePath, "professional.db");
-    return openDatabase(path, version: 1,
-        onCreate: (Database db, int newerVersion) async {
-      await db.execute(
-          "CREATE TABLE $professionalTable($idColumn INTEGER PRIMARY KEY,"
-          "$nameColumn TEXT NOT NULL, $sexColumn TEXT, $emailColumn TEXT NOT NULL, $passwordColumn TEXT NOT NULL, "
-          "$phoneColumn TEXT NOT NULL, $imgColumn TEXT, $admindistrictColumn TEXT NOT NULL,"
-          "$regionColumn TEXT NOT NULL, $zipcodeColumn TEXT NOT NULL, $serviceColumn TEXT NOT NULL)");
-    });
+    var dbDir = await getDatabasesPath();
+    var dbPath = join(dbDir, "app.db");
+    await deleteDatabase(dbPath);
+    ByteData data = await rootBundle.load("assets/professional.db");
+    List<int> bytes = data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+    await File(dbPath).writeAsBytes(bytes);
+    return await openDatabase(dbPath);
   }
 
   Future<Professional> saveProfessional(Professional professional) async {
@@ -98,6 +103,9 @@ class Professional {
   String city;
   String admindistrict;
   String service;
+  String desc1;
+  String desc2;
+  double grade;
 
   Professional.fromMap(Map map) {
     this.id = map[idColumn];
@@ -111,6 +119,9 @@ class Professional {
     this.admindistrict = map[admindistrictColumn];
     this.img = map[imgColumn];
     this.service = map[serviceColumn];
+    this.grade = map[gradeColumn];
+    this.desc1 = map[desc1Column];
+    this.desc2 = map[desc12Column];
   }
 
   Map toMap() {
@@ -124,7 +135,10 @@ class Professional {
       zipcodeColumn: this.zipcode,
       phoneColumn: this.phone,
       imgColumn: this.img,
-      serviceColumn: this.service
+      serviceColumn: this.service,
+      gradeColumn: this.grade,
+      desc1Column: this.desc1,
+      desc12Column: this.desc2
     };
     if (id != null) map[idColumn] = this.id;
     return map;

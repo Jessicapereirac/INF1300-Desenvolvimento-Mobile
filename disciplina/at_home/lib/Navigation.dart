@@ -34,6 +34,7 @@ class _NavigationState extends State<Navigation> {
     imagemTemp = await ImagePicker.pickImage(source: ImageSource.gallery);
     setState(() {
       client.img = imagemTemp.path;
+      debugPrint("${client.img}");
       client_db.updateClient(client);
 
     });
@@ -43,6 +44,7 @@ class _NavigationState extends State<Navigation> {
     imagemTemp = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
       client.img = imagemTemp.path;
+      debugPrint("${client.img}");
       client_db.updateClient(client);
     });
   }

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:com/descricao.dart';
 import 'package:intent/intent.dart' as android_intent;
 import 'package:intent/action.dart' as android_action;
 import 'dart:io';
@@ -29,7 +30,7 @@ class _professional_listState extends State<professional_List> {
     List<Map> maps = await prof_db.getProfessionals(_service);
     List<Professional> professional_list = [];
     maps.forEach((map) => professional_list.add(Professional.fromMap(map)));
-    debugPrint("$professional_list");
+    debugPrint("\n\nprofessional list:$professional_list\n\n");
     _professionalBiulder = new _professionalListBiulder(professional_list);
     if (_service == "F")
       _service = AppTranslate(context).text('fisio');
@@ -102,13 +103,9 @@ class _professionalListBiulder {
   String gender(int index, BuildContext context) {
     if (this.professionals[index].sex == "F")
       return AppTranslate(context).text('fem');
-    else if (this.professionals[index].sex == "M") return AppTranslate(context).text('mas');
+    else if (this.professionals[index].sex == "M")
+      return AppTranslate(context).text('mas');
     return AppTranslate(context).text('outro');
-  }
-
-  getImageRef(int index) {
-    List arr = this.professionals[index].img.split("\\");
-    return arr.last;
   }
 
   @override
@@ -118,7 +115,7 @@ class _professionalListBiulder {
         child: GestureDetector(
           child: ClipOval(
               child: Image.asset(
-            "images/" + getImageRef(index),
+            this.professionals[index].img,
             width: 100,
             height: 100,
             fit: BoxFit.cover,
@@ -140,9 +137,19 @@ class _professionalListBiulder {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => maisDetalhes(this.professionals[index])));
+                                builder: (context) =>
+                                    maisDetalhes(this.professionals[index])));
                       }),
                   actions: <Widget>[
+                    CupertinoActionSheetAction(
+                        child: Text("Mais detalhes"),
+                        onPressed: () {
+                           Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    descricao(this.professionals[index])));
+                        }),
                     CupertinoActionSheetAction(
                         child: Text(AppTranslate(context).text('ligar')),
                         onPressed: () {
@@ -176,24 +183,25 @@ class _professionalListBiulder {
         children: <Widget>[
           Padding(
             padding: EdgeInsets.fromLTRB(5, 0.0, 0.0, 0.0),
+            child: Icon(Icons.star),
+            ),
+          Padding(
+            padding: EdgeInsets.fromLTRB(5, 0.0, 0.0, 0.0),
             child: Text(
-              gender(index, context),
+              "${this.professionals[index].grade}",
               style: TextStyle(
                   color: Colors.black, fontFamily: 'Roboto', fontSize: 15),
             ),
           ),
-          Padding(
-            padding: EdgeInsets.only(left: 190),
-            child: GestureDetector(
+        ],
+      ),
+      trailing: GestureDetector(
               child: Icon(Icons.share, color: Colors.black),
               onTap: () {
                 Share.share(AppTranslate(context).text('share') +
                     this.professionals[index].phone);
               },
             ),
-          )
-        ],
-      ),
     );
   }
 }
